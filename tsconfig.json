@@ -1,0 +1,15 @@
+{
+  "extends": "code-style/tsconfig.json",
+  "compilerOptions": {
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "declaration": false,
+    "declarationMap": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "rehype-highlight": ["../api/src/@types/rehype-highlight.d.ts"]
+    }
+  }
+}

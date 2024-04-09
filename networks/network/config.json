@@ -1,0 +1,12 @@
+{
+    "output": "networks/network/",
+    "chain": "CHAIN",
+    "datasources": [
+        {
+            "module": "accesscontrol",
+            "startBlock": 0
+        }
+    ],
+    "product": "hosted-service",
+    "name": "USERNAME/SUBGRAPH"
+}
