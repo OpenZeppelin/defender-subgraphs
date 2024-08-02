@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import { existsSync, readdirSync } from 'fs';
+import { existsSync } from 'fs';
 import { join } from 'path';
 import { GENERATED_DIR, CONFIG_FILE_NAME } from '../config';
 
@@ -24,14 +24,14 @@ const compile = (network: string): Promise<void> =>
     ls.on('close', resolve);
   });
 
-const run = async (): Promise<void> => {
+const run = async (network?: string): Promise<void> => {
   if (!existsSync(GENERATED_DIR)) {
-    console.error(`Path ${GENERATED_DIR} doesn't exist.`);
+    console.error(`Path ${GENERATED_DIR} doesn't exist.`, 'Did you forget to run yarn generate:configs?');
     process.exit(1);
   }
-  const compiles = readdirSync(GENERATED_DIR)
-    .map((network) => compile(network));
-  await Promise.all(compiles);
+  if (!network) throw new Error('Network not provided');
+
+  await compile(network);
 };
 
-run();
+run(process.argv[2]);
